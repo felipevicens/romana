@@ -5,6 +5,11 @@
   become: true
   become_user: root
 
+- name: Force restart service
+  command: systemctl reset-failed romana-kube-listener.service
+  become: true
+  become_user: root
+
 - name: Start services
   service: name="{{ item }}" state="started"
   with_items:
